@@ -20,6 +20,7 @@ public :
         int Get_Hurt(int);
         int snapped(int);
         void summon();
+        void menu();
         int get_hp();
         void bubble_sort(heroes heroesArray[], int);
         ~heroes();
@@ -48,6 +49,17 @@ void heroes::Dead(){
     if(hp<=0) 
     cout<<name<<" has fallen !"<<endl;
   delete this;
+}
+
+void heroes::menu(){
+  cout<<"╔══════════════════════════════════ SHOP ══════════════════════════════════╗"<<endl;
+  cout<<"In order to battle, you must purchase the Item"<<endl;
+  cout<<"Item per purchas will equip the whole party"<<endl;
+  cout<<"Long Sword Cost: 100"<<endl;
+  cout<<"Gun Cost: 200"<<endl;
+  cout<<"Potion Cost: 25"<<endl;
+  cout<<"Steroid Cost: 1000"<<endl;
+  cout<<"╚══════════════════════════════════════════════════════════════════════════╝"<<endl;
 }
 
 int heroes::Get_Hurt(int d){

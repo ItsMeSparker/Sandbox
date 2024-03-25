@@ -57,8 +57,8 @@ int NODE::get_price(){
         return 200*qty;
 
     case 3:
-        cout<<"You brought Potion!!!"<<endl;
-        return 25*qty;
+        cout<<"You brought Axe!!!"<<endl;
+        return 150*qty;
     case 4:
         cout<<"You brought Steroid!!!"<<endl;
         return 1000*qty;

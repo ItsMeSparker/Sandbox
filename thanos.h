@@ -18,8 +18,9 @@ public:
   void snapFinger();
   void Attack(int);
   int Get_Damaged(int);
+  int getHP();
   void operator++();
-  //~Thanos(){cout<<"Thanos is ded"<<endl;
+  ~Thanos();
   //}
 };
 
@@ -27,6 +28,17 @@ Thanos::Thanos(int stones, int hp){
     this->stones=stones;
     this->hp=hp;
   cout << "Thanos - The end is near" << endl;
+}
+
+Thanos::~Thanos(){
+  if(hp<=0){
+    cout<<"Thanos is defeated"<<endl;
+    cout<<"You won"<<endl;
+  }
+}
+
+int Thanos::getHP() {
+    return hp;
 }
 
 // show all hps

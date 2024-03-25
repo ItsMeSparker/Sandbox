@@ -11,9 +11,9 @@ int main(int argc, char* argv[]){
 Thanos T(0,500);
 int N;
 
-heroes perc("Percival",500,0);
-heroes kenn("Kenny",750,0);
-heroes xerx("Xerxes",640,0);
+heroes perc("Percival",500,4);
+heroes kenn("Kenny",750,4);
+heroes xerx("Xerxes",640,4);
 heroes heroesArray[3] = {perc, kenn, xerx};
   cout<<"How many heroes do you want to summon (Max : 3) ? ";
   cin>>N;
@@ -25,7 +25,8 @@ heroes heroesArray[3] = {perc, kenn, xerx};
   }
 
   Queue q;
-   int k, x, Ultra;
+  int k, x, Ultra = 0;
+  bool ThanosDefeated = false;
   
   heroesArray[i].menu();
   cout<<"You have 1000 Bath for the whole party"<<endl;
@@ -38,8 +39,9 @@ heroes heroesArray[3] = {perc, kenn, xerx};
             if(x==-1) cout<<"No Item"<<endl;
             else{
               cout << "Price: " << x << endl;
+              Ultra = Ultra + (x/10);
               cash = cash - x;
-              cout<<"You have "<< cash <<" left";
+              cout<<"You have "<< cash <<" left"<< endl;
               
               if(cash<x){
                 cout<<"You have no money"<<endl;
@@ -66,19 +68,24 @@ heroes heroesArray[3] = {perc, kenn, xerx};
 
   cout<<"The Heroes are now summoned !"<<endl;
 
-for(int i = 0; i < 6; i++){
+for(int i = 0; i < 6 && ThanosDefeated == false; i++){
   cout<<"The Heroes are now fighting !"<<endl;
 
   for(int j = 0; j < N ;j++){
     heroesArray[j].print_all(1);
-    int action = rand() % 2; // randomly choose an action (0 = attack, 1 = heal)
+    int action;  // randomly choose an action (0 = attack, 1 = heal)
+    cout<<"0 - Attack!!!"<<endl;
+    cout<<"1 - Heal!!!"<<endl;
+    cin>>action;
     if(action == 0){
       heroesArray[j].Attack(25+Ultra); // attack with 25 power
       T.Get_Damaged(25+Ultra); // Thanos takes 25 damage
-    } else {
+    } 
+    else {
       heroesArray[j].Heal(); // hero heals by 20 HP
     }
   }
+
   // Thanos attacks all heroes
   for(int j = 0; j < N; j++){
     int d;
@@ -87,9 +94,14 @@ for(int i = 0; i < 6; i++){
 
   }
   T.operator++();
-
   T.snapFinger();
 
+ if(T.getHP() <= 0){
+        cout<<"Thanos has been defeated"<<endl;
+        cout<<"You won"<<endl;
+        ThanosDefeated = true;
+        break;
+     }
 }
 
 

@@ -49,18 +49,18 @@ int NODE::get_price(){
     int price;
     switch (ord){
     case 1:
-        cout<<"You brought Long Sword!!!"<<endl;
+        cout<<"You bought Long Sword!!!"<<endl;
         return 100*qty;
 
     case 2:
-        cout<<"You brought Gun!!!"<<endl;
+        cout<<"You bought Gun!!!"<<endl;
         return 200*qty;
 
     case 3:
-        cout<<"You brought Axe!!!"<<endl;
+        cout<<"You bought Axe!!!"<<endl;
         return 150*qty;
     case 4:
-        cout<<"You brought Steroid!!!"<<endl;
+        cout<<"You bought Steroid!!!"<<endl;
         return 1000*qty;
     
     default:

@@ -39,8 +39,7 @@ Thanos T(0,500);
   head->next->menu();
   cout<<"You have 1000 Bath for the whole party"<<endl;
   int cash = 1000;
-
-      for(k=0;k<2 && cash>0;k++){
+      for(k=0;k<4 && cash>0;k++){
         int item_number;
         int item_qty;
         cout<<"╔════════════════════════════════════════════════════════════════════════╗"<<endl;

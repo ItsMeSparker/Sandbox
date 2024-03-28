@@ -129,34 +129,37 @@ int heroes::GetPotion(){
     return potion;
 }
 
-void heroes::bubble_sort(int N){
+void heroes::bubble_sort(int N) {
+    bool swapped;
+    heroes *temp;
+    do {
+        swapped = false;
+        temp = this; 
+        for (int i = 0; i < N - 1; i++) {
+            if (temp != nullptr && temp->next != nullptr) { 
+            if (temp->GetHP() < temp->next->GetHP()) {
+              string tempName = temp->GetName();
+              temp->set_name(temp->next->GetName());
+              temp->next->set_name(tempName);
 
-  bool swapped;
-do{
-  swapped = false;
-  heroes *temp= this;
-  for(int i = 0 ; i < N-1 ; i++){
-    for(int j = 0 ; j < N-i-1 ; j++){
-    if(temp->GetHP() < temp->next->GetHP()){
-      string tempName = temp->GetName();
-      temp->set_name(temp->next->GetName());
-      temp->next->set_name(tempName);
+              int tempHP = temp->GetHP();
+              temp->set_hp(temp->next->GetHP());
+              temp->next->set_hp(tempHP);
 
-      int tempHP = temp->GetHP();
-      temp->set_hp(temp->next->GetHP());
-      temp->next->set_hp(tempHP);
+              int tempPotion = temp->GetPotion();
+              temp->set_potion(temp->next->GetPotion());
+              temp->next->set_potion(tempPotion);
 
-      int tempPotion = temp->GetPotion();
-      temp->set_potion(temp->next->GetPotion());
-      temp->next->set_potion(tempPotion);
-      swapped=true;
-        }    
-      temp = temp->next;
-      }
-    temp=this;
-    }
-  } while (swapped);
-} 
+              swapped = true;
+            }
+              temp = temp->next;
+            }
+        }
+        N--;
+    } while (swapped);
+}
+
+
 
 void heroes::set_potion(int p){
   p=potion;

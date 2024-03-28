@@ -11,8 +11,9 @@ private:
         string name;
         int hp;
         int potion;
-        
+
 public :
+        heroes *next;
         heroes(string, int, int);
         void Attack(int);
         void Dead();
@@ -21,14 +22,17 @@ public :
         int snapped(int);
         void summon();
         void menu();
-        int get_hp();
-        void bubble_sort(heroes heroesArray[], int);
+        void bubble_sort(int);
         ~heroes();
 
+        string GetName();
+        int GetHP();
+        int GetPotion();
         void set_name(string);
         void set_hp(int);
         void set_potion(int);
-        void print_all(int);
+        void SwapHeroes();
+        //void print_all(int);
 
 };
 
@@ -39,7 +43,7 @@ heroes::heroes(string n,int h,int p){
 }
 
 void heroes::Attack(int d){
-  
+
   cout<<"╔════════════════════════════════════════════════════════════════════════╗"<<endl;
   cout<<name<<" has weakened Thanos by "<<d<<" hp"<<endl;
   cout<<"╚════════════════════════════════════════════════════════════════════════╝"<<endl;
@@ -55,10 +59,10 @@ void heroes::menu(){
   cout<<"╔══════════════════════════════════ SHOP ══════════════════════════════════╗"<<endl;
   cout<<"In order to battle, you must purchase the Item"<<endl;
   cout<<"Item per purchas will equip the whole party"<<endl;
-  cout<<"Long Sword Cost: 100"<<endl;
-  cout<<"Gun Cost: 200"<<endl;
-  cout<<"Potion Cost: 25"<<endl;
-  cout<<"Steroid Cost: 1000"<<endl;
+  cout<<"(1) Long Sword Cost: 100"<<endl;
+  cout<<"(2) Gun Cost: 250"<<endl;
+  cout<<"(3) Warhammer Cost: 200"<<endl;
+  cout<<"(4) Steroid Cost: 1000"<<endl;
   cout<<"╚══════════════════════════════════════════════════════════════════════════╝"<<endl;
 }
 
@@ -73,8 +77,8 @@ int heroes::Get_Hurt(int d){
 int heroes::Heal(){
     int temp = hp;
 
-if(potion > 0){
-        if(temp + 20 < 200){
+    if(potion > 0){
+        if(temp + 20 < 500){
             hp += 20;
             potion--;
     cout<<"╔════════════════════════════════════════════════════════════════════════╗"<<endl;
@@ -97,7 +101,7 @@ if(potion > 0){
 
 int heroes::snapped(int hp){
   hp/=2;
-  
+
   cout<<"╔════════════════════════════════════════════════════════════════════════╗"<<endl;
   cout<<"Thanos has snapped his finger"<<endl;
   cout<<name<<"hp has been reduced by half and has "<<hp<< " hp remaining"<<endl;
@@ -113,32 +117,51 @@ void heroes::set_hp(int h){
   h=hp;
 }
 
-int heroes::get_hp() {
+string heroes::GetName(){
+    return name;
+}
+
+int heroes::GetHP(){
     return hp;
 }
 
-void heroes::bubble_sort(heroes heroesArray[], int N){
+int heroes::GetPotion(){
+    return potion;
+}
+
+void heroes::bubble_sort(int N){
 
   bool swapped;
 do{
   swapped = false;
-  for(int i = 0 ; i < 3 ; i++){
-    for(int j = 0 ; j < 3 - 1 ; j++){
-    if(heroesArray[j].get_hp() < heroesArray[j+1].get_hp()){
-      heroes temp = heroesArray[j];
-      heroesArray[j] = heroesArray[j+1];
-      heroesArray[j + 1] = temp;
-        swapped=true;
+  heroes *temp= this;
+  for(int i = 0 ; i < N-1 ; i++){
+    for(int j = 0 ; j < N-i-1 ; j++){
+    if(temp->GetHP() < temp->next->GetHP()){
+      string tempName = temp->GetName();
+      temp->set_name(temp->next->GetName());
+      temp->next->set_name(tempName);
+
+      int tempHP = temp->GetHP();
+      temp->set_hp(temp->next->GetHP());
+      temp->next->set_hp(tempHP);
+
+      int tempPotion = temp->GetPotion();
+      temp->set_potion(temp->next->GetPotion());
+      temp->next->set_potion(tempPotion);
+      swapped=true;
         }    
+      temp = temp->next;
       }
+    temp=this;
     }
   } while (swapped);
-}
+} 
 
 void heroes::set_potion(int p){
   p=potion;
 }
-
+/*
 void heroes::print_all(int N){
   int i;
 
@@ -148,6 +171,26 @@ void heroes::print_all(int N){
   cout<< " Potion: " << potion << endl;
   cout<<"╚════════════════════════════════════════════════════════════════════════╝"<<endl;
 }
+*/
+void heroes::SwapHeroes() {
+   heroes* temp = this;
+    while (temp != nullptr && temp->next != nullptr) {
+        string tempName = temp->GetName();
+        temp->set_name(temp->next->GetName());
+        temp->next->set_name(tempName);
+
+        int tempHP = temp->GetHP();
+        temp->set_hp(temp->next->GetHP());
+        temp->next->set_hp(tempHP);
+
+        int tempPotion = temp->GetPotion();
+        temp->set_potion(temp->next->GetPotion());
+        temp->next->set_potion(tempPotion);
+
+        temp = temp->next;
+    }
+}
+
 
 void heroes::summon(){
   cout<<name<<" is summoned with "<<hp<<" hp and "<<potion<<" potion "<<endl;

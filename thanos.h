@@ -32,8 +32,8 @@ Thanos::Thanos(int stones, int hp){
 
 Thanos::~Thanos(){
   if(hp<=0){
-    cout<<"Thanos is defeated"<<endl;
-    cout<<"You won"<<endl;
+    //cout<<"Thanos is defeated"<<endl;
+    //cout<<"You won"<<endl;
   }
 }
 

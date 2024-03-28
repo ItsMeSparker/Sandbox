@@ -9,6 +9,8 @@ public:
     void enqueue(int, int);
     int dequeue();
     Queue();
+    int get_size();
+    void set_size(int);
     //~Queue(); //dequeue all
 };
 
@@ -27,6 +29,15 @@ if(new_node){
  }
 }
 
+void Queue::set_size(int size){
+  size=size;
+}
+
+int Queue::get_size(){
+  return size;
+}
+
+
 int Queue::dequeue(){
   if(headPtr!=NULL){
     NodePtr t=headPtr;
@@ -35,10 +46,11 @@ int Queue::dequeue(){
     if(size == 1) 
       headPtr = tailPtr = NULL;
     size--; 
+    
     delete t;
     return value;
   }
-  cout<<"Empty queue";
+  cout<<"The queue is empty"<<endl;
   return -1;
 }
 

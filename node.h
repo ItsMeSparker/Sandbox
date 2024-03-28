@@ -1,7 +1,7 @@
 #ifndef node_h
 #define node_h
 class NODE{
-     int ord,qty,dmg,pot;
+     int ord,qty;
     NODE *nextPtr;
 public:
     NODE(int, int);
@@ -11,6 +11,8 @@ public:
     int get_order();
     int get_price();
      int get_qty();
+     void set_order(int);
+     void set_qty(int);
 };
 typedef NODE* NodePtr;
 
@@ -27,13 +29,20 @@ NODE* NODE::get_next(){
 }
 
 int NODE::get_order(){
-    return ord;
+    return this->ord;
 
 }
 
 int NODE::get_qty(){
-    return qty;
+    return this->qty;
 
+}
+
+void NODE::set_order(int ord){
+  this->ord=ord;
+}
+void NODE::set_qty(int qty){
+  this->qty=qty;
 }
 
 void NODE::set_next(NODE *t){
@@ -54,17 +63,18 @@ int NODE::get_price(){
 
     case 2:
         cout<<"You bought Gun!!!"<<endl;
-        return 200*qty;
+        return 250*qty;
 
     case 3:
-        cout<<"You bought Axe!!!"<<endl;
-        return 150*qty;
+        cout<<"You bought Warhammer!!!"<<endl;
+        return 200*qty;
     case 4:
         cout<<"You bought Steroid!!!"<<endl;
         return 1000*qty;
     
     default:
-        break;
+      return 0;  
+      break;
     }
 }
 

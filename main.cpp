@@ -12,14 +12,14 @@ Thanos T(0,500);
   heroes *temp, *head;
   string HeroesName[3] = {"Percival","Kenny","Xerxes"};
   int N;
-  head = new heroes("Percival",500, 4);
+  head = new heroes("Percival",700, 4);
   temp = head;
 
   cout<<"How many heroes do you want to summon (Max : 3) ? ";
   cin>>N;
   cout<<"We will now summon the "<< N <<" Heroes !"<<endl;
   for(int i=0; i<N-1; i++){
-      temp->next = new heroes(HeroesName[i+1], 500+((i+1)*100), 4);
+      temp->next = new heroes(HeroesName[i+1], 700-((i+1)*100), 4);
       temp = temp->next;
   }
 
@@ -143,24 +143,30 @@ for(int i = 0; i < 6 && ThanosDefeated == false; i++){
   cout<<"1 - Why can't you just double the universal resource"<<endl;
   cout<<"2 - There's still people who cannot access the resource"<<endl;
   cout<<"3 - You can't be redeemed, I have to kill you"<<endl;
-cout<<"╚════════════════════════════════════════════════════════════════════════╝"<<endl;
+  cout<<"╚════════════════════════════════════════════════════════════════════════╝"<<endl<<endl;
   int diag;
   
 while(diag != 2){
   int diag;
   cin>>diag;
 switch(diag){
-  case 1: cout<<"Thanos: Are you that stupid?, you can't just double the universal resource, civilized creature will use more and more resource unstoppablely"<<endl;
+  case 1: cout<<"╔════════════════════════════════════════════════════════════════════════╗"<<endl;
+  cout<<"Thanos: Are you that stupid?, you can't just double the universal resource, civilized creature will use more and more resource unstoppablely"<<endl;
     cout<<"Kenny: I'm sorry, I'm just a simple man"<<endl;
+     cout<<"╚════════════════════════════════════════════════════════════════════════╝"<<endl<<endl;
   break;
   
-  case 2: cout<<"Thanos: You are right, I need to actually help unprivileged people who cannot access the resource instend"<<endl;
+  case 2: cout<<"╔════════════════════════════════════════════════════════════════════════╗"<<endl;
+  cout<<"Thanos: You are right, I need to actually help unprivileged people who cannot access the resource instend"<<endl;
     cout<<"Thanos: Thank you so much for the idea, I will do my best to help you"<<endl;
     cout<<"Percival: No problem Thanos, let's play Fortnite and solve world hunger together"<<endl;
+     cout<<"╚════════════════════════════════════════════════════════════════════════╝"<<endl;
   break;
 
-  case 3: cout<<"Xerxes: No bro, we can't just kill him, it's immorral"<<endl;
+  case 3: cout<<"╔════════════════════════════════════════════════════════════════════════╗"<<endl;
+  cout<<"Xerxes: No bro, we can't just kill him, it's immorral"<<endl;
   cout<<"Kenny: I guess so, I'm sorry"<<endl;
+   cout<<"╚════════════════════════════════════════════════════════════════════════╝"<<endl<<endl;
   break;
      }
   if(diag == 2) break;

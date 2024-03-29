@@ -132,10 +132,11 @@ int heroes::GetPotion(){
 void heroes::bubble_sort(int N) {
     bool swapped;
     heroes *temp;
-    do {
-        swapped = false;
-        temp = this; 
         for (int i = 0; i < N - 1; i++) {
+          cout<<"Bubble"<<N<<endl;
+          temp = this; 
+           cout<<this->GetName()<<N<<endl;
+          for(int j =0; j <N-i-1;j++){
             if (temp != nullptr && temp->next != nullptr) { 
             if (temp->GetHP() < temp->next->GetHP()) {
               string tempName = temp->GetName();
@@ -149,14 +150,12 @@ void heroes::bubble_sort(int N) {
               int tempPotion = temp->GetPotion();
               temp->set_potion(temp->next->GetPotion());
               temp->next->set_potion(tempPotion);
-
-              swapped = true;
             }
-              temp = temp->next;
+              
             }
+            temp = temp->next;
         }
-        N--;
-    } while (swapped);
+        }
 }
 
 
